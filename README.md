@@ -1,20 +1,19 @@
 # MProfit report to CRM CSV converter
 
-A static, browser-only file conversion utility. It prepares separate family Account and individual Contact CSVs for manual Zoho CRM import.
+A browser-only utility. Routine use: choose one MProfit workbook, verify its date and unchanged client/family setup, prepare and download family and client CSVs.
 
-## Use
+## One-time setup
 
-1. Choose the complete MProfit Global Reporting Workbook and its valuation date.
-2. Choose current CRM Contacts and Accounts CSV exports, plus your privately supplied reviewed mapping JSON.
-3. Prepare CSVs, review totals and exclusions, then download the required output.
-4. Import into the appropriate CRM module using update-existing-only and exact record IDs. The converter does not connect to CRM or submit imports.
+Select the privately supplied setup JSON once per trusted browser. It combines reviewed mappings and minimal CRM identity/date fields. Setup is stored in localStorage on that browser; reports and calculated balances are never persisted or uploaded. Clear saved setup removes it. Another device or cleared browser storage requires selecting setup again.
 
-Files are read locally in your browser and are not uploaded by the converter. Reloading clears selected files and results. No analytics or remote scripts are included. The hosting provider handles ordinary requests for this public website.
+Refresh setup whenever CRM clients, family assignments or reviewed matches change. The converter does not read live CRM: its stored dates cannot detect subsequent CRM updates. Operators must confirm the report is not older than CRM and review exclusions before importing. Unknown source families block conversion; unresolved holders remain excluded.
 
-Never commit reports, CRM exports, private mappings, generated CSVs, credentials or client data to this repository. All private files must be supplied locally by the operator. Unknown mappings and conflicting record dates require review.
+## Import
 
-Gain percent is absolute gain, not XIRR. Family and individual totals overlap and must not be added together. This utility is not affiliated with MProfit or Zoho.
+Back up CRM, use update-existing-only, exact record IDs and the portfolio date. Family and client CSVs go to Accounts and Contacts respectively. The converter does not submit imports or connect to CRM. Gain percent is absolute gain, not XIRR.
+
+Never commit reports, private setup, mappings, exports, generated CSVs or credentials. The public repository contains only static code and documentation. No analytics, remote scripts or network uploads are included. GitHub handles ordinary requests for the public website. No affiliation with MProfit or Zoho.
 
 ## Hosting
 
-GitHub Pages: deploy the root of the main branch. All paths are relative. No build process, backend, subscription, WordPress plugin or Zoho Flow is required for conversion. Vendored SheetJS licensing is in LICENSE-SheetJS.txt.
+GitHub Pages main branch / root. No build process or backend. SheetJS is vendored; see LICENSE-SheetJS.txt.
