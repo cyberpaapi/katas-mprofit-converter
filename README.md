@@ -17,3 +17,9 @@ Never commit reports, private setup, mappings, exports, generated CSVs or creden
 ## Hosting
 
 GitHub Pages main branch / root. No build process or backend. SheetJS is vendored; see LICENSE-SheetJS.txt.
+
+## New clients
+
+Create the Contact and family association in CRM first. Expand New clients / refresh CRM list / back up setup and select a fresh full Contacts CSV export. For a new family, refresh Accounts too. Choose the MProfit report, click Review new / unmatched clients, select the family Account and then the exact Contact, and save the matches. Contacts are limited to the selected family; IDs distinguish identical names. Unconfirmed joint/ambiguous portfolios remain excluded.
+
+Changes save locally and survive reload. Download private setup backup after updates and load it on other team browsers; mappings do not synchronize automatically. Refreshing CRM lists replaces the previous lists while retaining reviewed mappings. No CRM records are created or modified by these controls.

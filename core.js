@@ -28,7 +28,7 @@ function convert(raw,mapping,contacts,accounts,asof){
   else if(h?.['Hold Reason'])reason=h['Hold Reason'];
   else if(!cid)reason='No reviewed Contact mapping';
   else if(!c)reason='Contact missing from CRM export';
-  else if(c['Account Name.id']!==h['Family Id'])reason='CRM family link changed';
+  else if(c['Account Name.id']!==h['Family Id']||c['Account Name.id']!==aid)reason='CRM family link changed';
   else if(date(c['Portfolio As-of Date'])>asof)reason='Contact has a newer portfolio date';
   if(reason){if(cid)blocked.add(cid);excluded.push({...g,reason,contactId:cid||''});}else add(cs,cid,g.invested,g.value);
  }
