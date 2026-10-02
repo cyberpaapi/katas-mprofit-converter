@@ -1,25 +1,21 @@
 # MProfit report to CRM CSV converter
 
-A browser-only utility. Routine use: choose one MProfit workbook, verify its date and unchanged client/family setup, prepare and download family and client CSVs.
+Everyone receives the same published client list and reviewed mappings automatically. Choose the MProfit workbook, confirm the report date and current client/family assignments, then prepare and download CSVs. No setup-file upload, browser storage or login is needed for routine conversion.
 
-## One-time setup
+## Shared list
 
-Select the privately supplied setup JSON once per trusted browser. It combines reviewed mappings and minimal CRM identity/date fields. Setup is stored in localStorage on that browser; reports and calculated balances are never persisted or uploaded. Clear saved setup removes it. Another device or cleared browser storage requires selecting setup again.
+The owner explicitly authorized publishing the minimal client list and reviewed matching information globally. shared-clients.js includes client/family names, CRM record IDs, family associations, portfolio-date checks and reviewed MProfit-name matches. It excludes report rows, balances, PAN, phone numbers, email addresses and credentials. This file is public. Reports are processed in memory and are not uploaded or persisted.
 
-Refresh setup whenever CRM clients, family assignments or reviewed matches change. The converter does not read live CRM: its stored dates cannot detect subsequent CRM updates. Operators must confirm the report is not older than CRM and review exclusions before importing. Unknown source families block conversion; unresolved holders remain excluded.
+The initial shared snapshot uses Contacts from30September2026 and Accounts from1October2026. It is not a live CRM connection. Confirm freshness before importing.
+
+## New clients and updates
+
+Create the Contact and family association in CRM first. Under Manage clients, preview refreshed full Contacts exports and Accounts exports for new families. Review new/unmatched clients, select exact records and apply matches. Changes affect the current session only. Download the updated list and have the implementation team publish it to shared-clients.js once; thereafter every visitor loads the updated shared list. Do not assume the browser can directly publish to GitHub or automatically sync CRM. No GitHub credentials are included in the page.
 
 ## Import
 
-Back up CRM, use update-existing-only, exact record IDs and the portfolio date. Family and client CSVs go to Accounts and Contacts respectively. The converter does not submit imports or connect to CRM. Gain percent is absolute gain, not XIRR.
-
-Never commit reports, private setup, mappings, exports, generated CSVs or credentials. The public repository contains only static code and documentation. No analytics, remote scripts or network uploads are included. GitHub handles ordinary requests for the public website. No affiliation with MProfit or Zoho.
+Back up CRM. Import family and client CSVs separately into Accounts and Contacts using update-existing-only and exact record IDs. This tool does not submit imports. Gain percent is absolute gain, not XIRR. Ambiguous records remain excluded.
 
 ## Hosting
 
-GitHub Pages main branch / root. No build process or backend. SheetJS is vendored; see LICENSE-SheetJS.txt.
-
-## New clients
-
-Create the Contact and family association in CRM first. Expand New clients / refresh CRM list / back up setup and select a fresh full Contacts CSV export. For a new family, refresh Accounts too. Choose the MProfit report, click Review new / unmatched clients, select the family Account and then the exact Contact, and save the matches. Contacts are limited to the selected family; IDs distinguish identical names. Unconfirmed joint/ambiguous portfolios remain excluded.
-
-Changes save locally and survive reload. Download private setup backup after updates and load it on other team browsers; mappings do not synchronize automatically. Refreshing CRM lists replaces the previous lists while retaining reviewed mappings. No CRM records are created or modified by these controls.
+GitHub Pages main branch/root, no backend. SheetJS is vendored; see LICENSE-SheetJS.txt. No affiliation with MProfit or Zoho. No analytics or report-upload requests. GitHub handles normal requests for public files.
